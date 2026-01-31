@@ -1,3 +1,69 @@
+/* Custom Properties for Consistency */
+:root {
+  /* Deep, rich blacks and very dark slates */
+  --bg-darkest: #020203;
+  --bg-accent: #080a12;
+  --bg-glow: #05070a;
+  
+  --accent: #4f7cff;
+  --text-main: #ffffff;
+  --text-muted: #8a8f98;
+  --border: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Using a 4-point gradient for more complex movement */
+  background: linear-gradient(
+    125deg, 
+    var(--bg-darkest), 
+    var(--bg-glow), 
+    var(--bg-accent), 
+    var(--bg-darkest)
+  );
+  background-size: 300% 300%;
+  /* "ease-in-out" makes the transition feel more natural */
+  animation: ultraSmooth 12s ease-in-out infinite;
+  
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+@keyframes ultraSmooth {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Apply a subtle backdrop blur to cards to make them pop against the moving BG */
+.product-card {
+  background: rgba(15, 17, 23, 0.6); /* Semi-transparent */
+  backdrop-filter: blur(12px); /* Glassmorphism effect */
+  border: 1px solid var(--border);
+  padding: 40px;
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover {
+  background: rgba(20, 24, 33, 0.8);
+  border-color: rgba(79, 124, 255, 0.4);
+  transform: translateY(-5px);
+}
+
+/* Ensure sections stay transparent to let the background show through */
+section {
+  background: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,178 +71,149 @@
   font-family: 'Inter', sans-serif;
 }
 
-body {
-  background: #0b0d12;
-  color: #e5e7eb;
-  line-height: 1.6;
+html {
+  scroll-behavior: smooth;
 }
 
-/* NAV */
+/* NAV - Clean & Centered */
 .nav {
   display: flex;
   justify-content: space-between;
-  padding: 24px 60px;
+  align-items: center;
+  padding: 30px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: lowercase;
 }
 
 .logo span {
-  color: #4f7cff;
+  color: var(--accent);
 }
 
 .nav-links a {
-  margin-left: 30px;
-  color: #9ca3af;
+  margin-left: 40px;
+  color: var(--text-muted);
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
 .nav-links a:hover {
-  color: #fff;
+  color: var(--text-main);
 }
 
-/* HERO */
+/* HERO - Tightened Typography */
 .hero {
   text-align: center;
-  padding: 120px 20px;
+  padding: 160px 20px 100px;
+  background: radial-gradient(circle at top, rgba(79, 124, 255, 0.07) 0%, transparent 50%);
 }
 
 .hero h1 {
-  font-size: 56px;
-  line-height: 1.1;
-  margin-bottom: 20px;
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 24px;
 }
 
 .hero p {
-  color: #9ca3af;
-  max-width: 520px;
-  margin: 0 auto 30px;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 18px;
 }
 
-.hero-buttons button {
-  margin: 0 10px;
-}
-
-/* BUTTONS */
-button {
-  padding: 14px 28px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.btn-primary {
-  background: #4f7cff;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #3f67e0;
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #e5e7eb;
-  border: 1px solid #2a2f3a;
-}
-
-/* TRUST */
-.trust {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding-bottom: 80px;
-  color: #9ca3af;
-}
-
-/* PRODUCTS */
+/* PRODUCTS - Grid & Cards */
 .products {
-  padding: 10px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
 }
 
 .products h2 {
+  font-size: 32px;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  letter-spacing: -1px;
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
 }
 
 .product-card {
-  background: rgba(255,255,255,0.04);
-  padding: 30px;
-  border-radius: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 40px;
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transform: translateY(-8px);
+  border-color: rgba(79, 124, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .product-card h3 {
-  margin-bottom: 8px;
+  font-size: 22px;
+  margin-bottom: 12px;
 }
 
 .product-card p {
-  color: #9ca3af;
-  font-size: 14px;
-  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 24px;
+  flex-grow: 1; /* Keeps buttons aligned */
 }
 
 .product-card span {
   display: block;
-  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-main);
+}
+
+/* BUTTONS - Modernized */
+button {
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .product-card button {
   width: 100%;
-  background: #1f2937;
-  color: #e5e7eb;
+  background: var(--accent);
+  color: white;
 }
 
-/* HOW */
-.how {
-  padding: 80px 60px;
-  text-align: center;
+.product-card button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 15px rgba(79, 124, 255, 0.3);
 }
 
-.steps {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.step {
-  background: rgba(255,255,255,0.04);
-  padding: 20px 30px;
-  border-radius: 14px;
-}
-
-/* FAQ */
-.faq {
-  padding: 80px 60px;
-}
-
-.faq-item {
-  margin-bottom: 20px;
-}
-
-.faq-item p {
-  color: #9ca3af;
-  margin-top: 6px;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 40px;
-  color: #6b7280;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav { padding: 24px 20px; }
+  .nav-links { display: none; } /* Consider a burger menu for mobile */
+  .hero h1 { font-size: 42px; }
+  .product-grid { grid-template-columns: 1fr; }
 }
