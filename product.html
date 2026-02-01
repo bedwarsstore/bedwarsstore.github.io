@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | bedwars.store</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product-style.css">
+</head>
+
+<body class="product-page">
+  <div id="snow-container"></div>
+
+  <nav class="nav reveal">
+    <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer">
+      bedwars <span>store</span>
+    </div>
+    <a href="index.html" class="back-btn">← Back to Store</a>
+  </nav>
+
+  <section class="product-detail-container">
+    <div class="detail-grid">
+      <div class="image-showcase reveal" style="transition-delay: 0.1s;">
+        <img id="main-img" src="https://raw.githubusercontent.com/bedwarsstore/bedwarsstore.github.io/refs/heads/main/moon1.png" alt="Product">
+        <div class="thumbnails">
+          <img src="https://raw.githubusercontent.com/bedwarsstore/bedwarsstore.github.io/refs/heads/main/moon1.png" onclick="document.getElementById('main-img').src=this.src">
+          <img src="https://raw.githubusercontent.com/bedwarsstore/bedwarsstore.github.io/refs/heads/main/moon3.png" onclick="document.getElementById('main-img').src=this.src">
+        </div>
+      </div>
+
+      <div class="info-content reveal" style="transition-delay: 0.2s;">
+        <h1 id="p-title">Product Name</h1>
+        <p id="p-price" class="price-tag"></p>
+        <div class="description">
+          <h3>Description</h3>
+          <p id="p-desc"></p>
+        </div>
+        <button class="buy-now-large" onclick="window.location.href='https://discord.gg/qsnUKxw6'">Purchase via Discord</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="snow-logic.js"></script> 
+
+  <script>
+    // 1. Data Injection Logic
+    const productData = {
+      'weekly': { title: 'Moon V3 Weekly', price: '350 Robux', desc: 'Full access for 7 days. Includes all updates and priority support.' },
+      'monthly': { title: 'Moon V3 Monthly', price: '750 Robux', desc: 'Full access for 30 days. Most popular choice for regular players.' },
+      'lifetime': { title: 'Moon V3 Lifetime', price: '3,500 Robux', desc: 'One-time payment. Permanent access to all future versions of Moon.' }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const item = params.get('item');
+    const data = productData[item] || productData['weekly'];
+
+    document.getElementById('p-title').innerText = data.title;
+    document.getElementById('p-price').innerText = data.price;
+    document.getElementById('p-desc').innerText = data.desc;
+
+    // 2. Animation Trigger
+    // This activates the .reveal classes defined in your style.css
+    window.addEventListener('load', () => {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => el.classList.add('active'));
+    });
+  </script>
+  <div id="snow-container"></div>
+
+  <script>
+    // Intersection Observer for Scroll Animations
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.product-card, .hero h1, .hero p').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+
+    function createSnowflake() {
+      const container = document.getElementById('snow-container');
+      const snowflake = document.createElement('div');
+      
+      // Randomize properties
+      const size = Math.random() * 4 + 2 + 'px';
+      const left = Math.random() * 100 + '%';
+      const duration = Math.random() * 5 + 5 + 's';
+      const opacity = Math.random();
+
+      snowflake.classList.add('snowflake');
+      snowflake.style.width = size;
+      snowflake.style.height = size;
+      snowflake.style.left = left;
+      snowflake.style.animationDuration = duration;
+      snowflake.style.opacity = opacity;
+
+      container.appendChild(snowflake);
+
+      // Remove snowflake after it falls to keep DOM clean
+      setTimeout(() => {
+        snowflake.remove();
+      }, parseFloat(duration) * 1000);
+    }
+
+    // Create a new snowflake every 150ms
+    setInterval(createSnowflake, 150);
+  </script>
+</body>
+</html>
