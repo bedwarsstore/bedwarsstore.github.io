@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon V3 Options | bedwars.store</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product-style.css">
+  <style>
+    .plan-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    .plan-option {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .plan-option:hover {
+      border-color: var(--accent);
+      background: rgba(79, 124, 255, 0.05);
+    }
+    .plan-option.selected {
+      border-color: var(--accent);
+      background: rgba(79, 124, 255, 0.1);
+      box-shadow: 0 0 15px rgba(79, 124, 255, 0.2);
+    }
+    .plan-info h4 { margin: 0; font-size: 18px; }
+    .plan-info p { margin: 5px 0 0; font-size: 13px; color: var(--text-muted); }
+    .plan-price { font-weight: 700; color: var(--accent); }
+  </style>
+</head>
+
+<body class="product-page">
+  <div id="snow-container"></div>
+
+  <nav class="nav reveal active">
+    <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer">
+      bedwars <span>store</span>
+    </div>
+    <a href="index.html" class="back-btn">← Back to Store</a>
+  </nav>
+
+  <section class="product-detail-container">
+    <div class="detail-grid">
+      <div class="image-showcase reveal active">
+        <img id="main-img" src="https://raw.githubusercontent.com/bedwarsstore/bedwarsstore.github.io/refs/heads/main/moon1.png" alt="Moon V3">
+        <div class="thumbnails">
+          <img src="https://raw.githubusercontent.com/bedwarsstore/bedwarsstore.github.io/refs/heads/main/moon1.png" onclick="document.getElementById('main-img').src=this.src">
+          <img src="https://raw.githubusercontent.com/bedwarsstore/bedwarsstore.github.io/refs/heads/main/moon3.png" onclick="document.getElementById('main-img').src=this.src">
+        </div>
+      </div>
+
+      <div class="info-content reveal active">
+        <h1>Moon V3 Access</h1>
+        <p class="price-tag">Select a Plan</p>
+        
+        <div class="plan-selector">
+          <div class="plan-option" onclick="selectPlan(this, 'https://www.roblox.com/games/130369159865529/Store')">
+            <div class="plan-info">
+              <h4>Daily Pass</h4>
+              <p>24-hour full access</p>
+            </div>
+            <div class="plan-price">200 Robux</div>
+          </div>
+
+          <div class="plan-option" onclick="selectPlan(this, 'https://www.roblox.com/games/130369159865529/Store')">
+            <div class="plan-info">
+              <h4>Weekly Pass</h4>
+              <p>7 days of premium</p>
+            </div>
+            <div class="plan-price">350 Robux</div>
+          </div>
+
+          <div class="plan-option selected" onclick="selectPlan(this, 'https://www.roblox.com/games/130369159865529/Store')">
+            <div class="plan-info">
+              <h4>Monthly Pass</h4>
+              <p>30 days of premium</p>
+            </div>
+            <div class="plan-price">750 Robux</div>
+          </div>
+
+          <div class="plan-option" onclick="selectPlan(this, 'https://www.roblox.com/games/130369159865529/Store')">
+            <div class="plan-info">
+              <h4>Lifetime Access</h4>
+              <p>Permanent ownership</p>
+            </div>
+            <div class="plan-price">3,500 Robux</div>
+          </div>
+        </div>
+
+        <button class="buy-now-large" style="margin-top: 30px;" id="purchase-btn" onclick="window.location.href='https://www.roblox.com/games/130369159865529/Store'">Purchase via Robux</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function selectPlan(element, url) {
+      // Remove selected class from all
+      document.querySelectorAll('.plan-option').forEach(opt => opt.classList.remove('selected'));
+      // Add to clicked
+      element.classList.add('selected');
+      // Update button URL (if different plans have different links)
+      document.getElementById('purchase-btn').onclick = () => window.location.href = url;
+    }
+  </script>
+  <script src="snow-logic.js"></script>
+</body>
+</html>

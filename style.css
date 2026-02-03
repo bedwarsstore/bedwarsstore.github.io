@@ -298,10 +298,10 @@ button {
 
 .badge {
   position: absolute;
-  top: 15px;
-  right: -30px;
+  top: 27px;
+  right: -47px;
   transform: rotate(45deg);
-  padding: 15px 35px;
+  padding: 15px 55px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
