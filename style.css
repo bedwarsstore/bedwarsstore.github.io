@@ -289,3 +289,96 @@ button {
 .product-card button:active {
   transform: scale(0.95);
 }
+
+/* Badge Styling */
+.product-card {
+  position: relative; /* Essential for badge positioning */
+  overflow: hidden;   /* Keeps the badge within rounded corners */
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  transform: rotate(45deg);
+  padding: 15px 35px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific Badge Colors */
+.bestseller {
+  background: var(--accent); /* Uses your primary blue */
+  color: white;
+}
+
+.bestvalue {
+  background: #00c853; /* A vibrant green to signify savings */
+  color: white;
+}
+
+/* Subtle glow for the badges */
+.badge.bestseller {
+  box-shadow: 0 0 15px rgba(79, 124, 255, 0.4);
+}
+
+.badge.bestvalue {
+  box-shadow: 0 0 15px rgba(0, 200, 83, 0.3);
+}
+
+/* REVIEWS SECTION */
+.reviews {
+  padding: 100px 0;
+  overflow: hidden; /* Keeps the marquee contained */
+}
+
+.reviews h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+  letter-spacing: -1px;
+}
+
+.marquee-container {
+  display: flex;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  gap: 20px;
+  animation: scrollLine 30s linear infinite;
+}
+
+/* Pause animation on hover so users can read */
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.review-card {
+  background: rgba(15, 17, 23, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  padding: 20px 30px;
+  border-radius: 16px;
+  white-space: nowrap; /* Keeps reviews on one line */
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.review-card span {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* Moving Line Animation */
+@keyframes scrollLine {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
